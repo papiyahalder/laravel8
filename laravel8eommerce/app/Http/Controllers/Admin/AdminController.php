@@ -29,6 +29,7 @@ class AdminController extends Controller
                  Session::flash('error_message','Invalid email or password');
                 return redirect('/');
                 // return redirect()->back();
+                // return redirect()->back();
              }
         //      return view('admin.admin_login');
         // }
