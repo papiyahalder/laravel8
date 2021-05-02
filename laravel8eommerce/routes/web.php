@@ -38,7 +38,8 @@ Route::prefix('/admin')->group(function () {
         Route::get('/category', 'App\Http\Controllers\Admin\CategoryController@index')->name('admin.category');
         Route::get('/category/add', 'App\Http\Controllers\Admin\CategoryController@create')->name('add.category');
         Route::post('/category/store', 'App\Http\Controllers\Admin\CategoryController@store')->name('store.category');
-        Route::get('/category/edit', 'App\Http\Controllers\Admin\CategoryController@edit')->name('edit.category');
+        Route::get('/category/edit/{id}', 'App\Http\Controllers\Admin\CategoryController@edit')->name('edit.category');
+        Route::post('/category/edit/{id}', 'App\Http\Controllers\Admin\CategoryController@edit')->name('edit.category');
 
     });
      

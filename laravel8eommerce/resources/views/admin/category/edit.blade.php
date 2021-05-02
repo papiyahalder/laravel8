@@ -22,42 +22,47 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card card-primary">
-            <div class="card-header">
-              <h3 class="card-title">General</h3>
+    <form action="{{ route('edit.category',$categories->id) }}" method="POST">
+        @csrf
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">General</h3>
 
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                  <i class="fas fa-minus"></i></button>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                    <i class="fas fa-minus"></i></button>
+                </div>
               </div>
+              @foreach ($categories as $category)
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="inputName">Category Name</label>
+                    <input type="text" id="inputName" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="inputStatus">Status</label>
+                    <select class="form-control custom-select">
+                      <option selected disabled>Select one</option>
+                      <option value="1">Active</option>
+                      <option value="1">Inactive</option>
+                    </select>
+                  </div>
+                </div>
+              @endforeach  
+              <!-- /.card-body -->
             </div>
-            <div class="card-body">
-              <div class="form-group">
-                <label for="inputName">Category Name</label>
-                <input type="text" id="inputName" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputStatus">Status</label>
-                <select class="form-control custom-select">
-                  <option selected disabled>Select one</option>
-                  <option>Active</option>
-                  <option>Inactive</option>
-                </select>
-              </div>
-            </div>
-            <!-- /.card-body -->
+            <!-- /.card -->
           </div>
-          <!-- /.card -->
         </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <a href="#" class="btn btn-secondary">Cancel</a>
-          <input type="submit" value="Save Changes" class="btn btn-success float-right">
+        <div class="row">
+          <div class="col-12">
+            <a href="#" class="btn btn-secondary">Cancel</a>
+            <input type="submit" value="Save Changes" class="btn btn-success float-right">
+          </div>
         </div>
-      </div>
+        </form>
     </section>
     <!-- /.content -->
   </div>

@@ -53,30 +53,28 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+            @foreach ($categories as $category)
+            <tr>
                     <td>
                         #
                     </td>
-                    <td>
-                        <a>
-                            AdminLTE v3
-                        </a>
-                        <br/>
-                        <small>
-                            Created 01.01.2019
-                        </small>
-                    </td>
+                    <td>{{ $category->category_name }}</td>
                     
                     <td class="project-state">
-                        <span class="badge badge-success">Success</span>
+                    @if($category->status)
+                        <span class="badge badge-success">Active</span>
+                    @else
+                    <span class="badge badge-success">Inctive</span>
+                    @endif
                     </td>
+
                     <td class="project-actions text-right">
                         {{-- <a class="btn btn-primary btn-sm" href="#">
                             <i class="fas fa-folder">
                             </i>
                             View
                         </a> --}}
-                        <a class="btn btn-info btn-sm" href="{{ route('edit.category') }}">
+                        <a class="btn btn-info btn-sm" href="{{ route('edit.category',$category->id) }}">
                             <i class="fas fa-pencil-alt">
                             </i>
                             Edit
@@ -88,6 +86,7 @@
                         </a>
                     </td>
                 </tr>
+            @endforeach
             </tbody>
         </table>
       </div>

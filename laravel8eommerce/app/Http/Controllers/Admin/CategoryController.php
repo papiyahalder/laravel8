@@ -16,7 +16,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.category.index');
+        $categories = Category::get();
+        // return view('admin.category.index',compact('categories'));
+        return view('admin.category.index',compact('categories'));
     }
 
     /**
@@ -71,9 +73,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $Category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category  $Category)
+    public function edit($id)
     {
-        return view('admin.category.edit');
+        $categories = Category::findOrFail($id);
+        return view('admin.category.edit',compact('categories'));
     }
 
     /**
