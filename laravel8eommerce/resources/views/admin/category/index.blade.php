@@ -61,7 +61,7 @@
                     <td>{{ $category->category_name }}</td>
                     
                     <td class="project-state">
-                    @if($category->status)
+                    @if($category->status == 1)
                         <span class="badge badge-success">Active</span>
                     @else
                     <span class="badge badge-success">Inctive</span>

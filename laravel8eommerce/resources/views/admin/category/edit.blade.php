@@ -22,7 +22,7 @@
 
     <!-- Main content -->
     <section class="content">
-    <form action="{{ route('edit.category',$categories->id) }}" method="POST">
+    <form action="{{ route('update.category',$categories->id) }}" method="POST">
         @csrf
         <div class="row">
           <div class="col-md-12">
@@ -35,22 +35,27 @@
                     <i class="fas fa-minus"></i></button>
                 </div>
               </div>
-              @foreach ($categories as $category)
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="inputName">Category Name</label>
-                    <input type="text" id="inputName" class="form-control">
+                    <label for="category_name">Category Name</label>
+                    <input type="text" id="category_name" class="form-control" value="{{ $categories->category_name }}">
                   </div>
                   <div class="form-group">
                     <label for="inputStatus">Status</label>
                     <select class="form-control custom-select">
-                      <option selected disabled>Select one</option>
-                      <option value="1">Active</option>
-                      <option value="1">Inactive</option>
+                     
+                      <option value="0" selected>Inactive</option>
+                      <option value="1" selected>Active</option>
+                      {{-- @foreach ($categories as $category)
+                      @if($category->status == 1)
+                      <option value="{{$category->status}}" {{(old('status', $category->status) == $category->status ? 'selected' : '')}} > Active </option>
+                      @else
+                      <option value="{{$category->status}}" {{(old('status', $category->status) == $category->status ? 'selected' : '')}} > Inactive </option>
+                      @endif
+                      @endforeach --}}
                     </select>
                   </div>
                 </div>
-              @endforeach  
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
