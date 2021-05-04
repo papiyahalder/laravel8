@@ -42,6 +42,14 @@ Route::prefix('/admin')->group(function () {
         Route::get('/category/edit/{id}', 'App\Http\Controllers\Admin\CategoryController@edit')->name('edit.category');
         Route::post('/category/update/{id}', 'App\Http\Controllers\Admin\CategoryController@update')->name('update.category');
         Route::get('destroy/category/{id}', 'App\Http\Controllers\Admin\CategoryController@destroy')->name('category.destroy');
+
+        // -------------------------------Admin Brand-------------------------//
+        Route::get('/brand/show', 'App\Http\Controllers\Admin\BrandController@index')->name('admin.brand');
+        Route::get('/brand/add', 'App\Http\Controllers\Admin\BrandController@create')->name('add.brand');
+        Route::post('/brand/store', 'App\Http\Controllers\Admin\BrandController@store')->name('store.brand');
+        Route::get('/brand/edit/{id}', 'App\Http\Controllers\Admin\BrandController@edit')->name('edit.brand');
+        Route::post('/brand/update/{id}', 'App\Http\Controllers\Admin\BrandController@update')->name('update.brand');
+        Route::get('/brand/destroy/{id}', 'App\Http\Controllers\Admin\BrandController@destroy')->name('brand.destroy');
     });
      
 });

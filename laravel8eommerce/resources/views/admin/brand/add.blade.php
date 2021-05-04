@@ -31,14 +31,14 @@
         </div>
       @endif
 
-        <form action="{{ route('store.category') }}" method="POST">
+        <form action="{{ route('store.brand') }}" method="POST">
             @csrf
             <div>
             <div class="row">
                 <div class="col-md-12">
                 <div class="card card-primary">
                     <div class="card-header">
-                    <h3 class="card-title">Categories</h3>
+                    <h3 class="card-title">Brands</h3>
 
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -47,9 +47,9 @@
                     </div>
                     <div class="card-body">
                     <div class="form-group">
-                        <label for="inputName">Category Name</label>
-                        <input type="text" id="category_name" name="category_name" class="form-control   @error('category_name') is-invalid @enderror">
-                            @error('category_name')
+                        <label for="inputName">Brand Name</label>
+                        <input type="text" id="brand_name" name="brand_name" class="form-control   @error('brand_name') is-invalid @enderror">
+                            @error('brand_name')
                               <span class="text-danger">{{$message}}</span>
                             @enderror
                       </div>
@@ -73,7 +73,7 @@
             <div class="row">
                 <div class="col-12">
                 <a href="#" class="btn btn-secondary">Cancel</a>
-                <button type="submit"  class="btn btn-success float-right" id="butsave">Create new Category</button>
+                <button type="submit"  class="btn btn-success float-right">Create new Brand</button>
                 </div>
             </div>
             </div>
@@ -81,41 +81,4 @@
     </section>
     <!-- /.content -->
   </div>
-  <script>
-    $(document).ready(function() {
-    
-    $('#butsave').on('click', function() {
-      var name = $('#category_name').val();
-      var status = $('#status').val();
-      if(name!="" && status!=""){
-        /*  $("#butsave").attr("disabled", "disabled"); */
-          $.ajax({
-              url: "/admin/category/add",
-              type: "POST",
-              data: {
-                  _token: $("#csrf").val(),
-                  type: 1,
-                  name: category_name,
-                  status: status
-              },
-              cache: false,
-              success: function(dataResult){
-                  console.log(dataResult);
-                  var dataResult = JSON.parse(dataResult);
-                  if(dataResult.statusCode==200){
-                    window.location = "/admin/category";				
-                  }
-                  else if(dataResult.statusCode==201){
-                      alert("Error occured !");
-                  }
-                  
-              }
-          });
-      }
-      else{
-          alert('Please fill all the field !');
-      }
-  });
-  });
-</script>
 @endsection

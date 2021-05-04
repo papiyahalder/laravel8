@@ -52,8 +52,11 @@ class CategoryController extends Controller
         // ]);
         Category::create($request->all());
 
-        return redirect('admin/category/add')
-            ->with('success', 'Category created successfully.');
+        // return redirect('admin/category/add')
+        //     ->with('success', 'Category created successfully.');
+        return json_encode(array(
+            "statusCode"=>200
+        ));
 
         // return view('admin.category.add');
     }
