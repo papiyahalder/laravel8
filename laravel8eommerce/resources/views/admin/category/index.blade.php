@@ -29,10 +29,19 @@
         <h3 class="card-title">Projects</h3>
 
         <div class="card-tools">
+          
           <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
             <i class="fas fa-minus"></i></button>
           <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
             <i class="fas fa-times"></i></button>
+            {{-- <form class="navbar-form navbar-left" method="GET" action="{{url('search')}}">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search" name="search">
+                  <button class="btn btn-default" type="submit">
+                    <i class="fa fa-search"></i>
+                  </button>
+              </div>
+            </form> --}}
         </div>
       </div>
       <div class="card-body p-0">
@@ -49,6 +58,14 @@
                         Status
                     </th>
                     <th style="width: 20%">
+                      <form class="navbar-form navbar-left" method="GET" action="{{url('search')}}">
+                        <div class="input-group">
+                          <input type="text" class="form-control" placeholder="Search" name="search">
+                            <button class="btn btn-default" type="submit">
+                              <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                      </form>
                     </th>
                 </tr>
             </thead>
@@ -79,7 +96,7 @@
                             </i>
                             Edit
                         </a>
-                        <a class="btn btn-danger btn-sm" href="#">
+                        <a class="btn btn-danger btn-sm" href="{{ route('category.destroy', $category->id) }}">
                             <i class="fas fa-trash">
                             </i>
                             Delete

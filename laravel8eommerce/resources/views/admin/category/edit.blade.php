@@ -38,7 +38,7 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label for="category_name">Category Name</label>
-                    <input type="text" id="category_name" class="form-control" value="{{ $categories->category_name }}">
+                    <input type="text"name="category_name" id="category_name" class="form-control" value="{{ $categories->category_name }}">
                   </div>
                   <div class="form-group">
                     <label for="inputStatus">Status</label>

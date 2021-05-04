@@ -22,6 +22,15 @@
 
     <!-- Main content -->
     <section class="content">
+      @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>{{session('success')}}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+      @endif
+
         <form action="{{ route('store.category') }}" method="POST">
             @csrf
             <div>
@@ -39,15 +48,21 @@
                     <div class="card-body">
                     <div class="form-group">
                         <label for="inputName">Category Name</label>
-                        <input type="text" id="category_name" name="category_name" class="form-control">
-                    </div>
+                        <input type="text" id="category_name" name="category_name" class="form-control   @error('category_name') is-invalid @enderror">
+                            @error('category_name')
+                              <span class="text-danger">{{$message}}</span>
+                            @enderror
+                      </div>
                     <div class="form-group">
                         <label for="inputStatus">Status</label>
-                        <select class="form-control custom-select" name="status" id="status">
+                        <select class="form-control custom-select  @error('status') is-invalid @enderror" name="status" id="status">
                         <option selected disabled>Select one</option>
                         <option value="1">Active</option>
                         <option value="0">Inactive</option>
                         </select>
+                        @error('status')
+                        <span class="text-danger">{{$message}}</span>
+                      @enderror
                     </div>
                     </div>
                     <!-- /.card-body -->
