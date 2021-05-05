@@ -69,21 +69,21 @@
                 </tr>
             </thead>
             <tbody>
-            {{-- @foreach ($categories as $category) --}}
+            @foreach ($products as $product) 
             <tr>
                     <td>
                         #
                     </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{$product->image_one}}</td>
+                    <td>{{$product->product_name}}</td>
+                    <td>{{$product->product_quantity}}</td>
+                    <!-- <td>{{$product->categories->category_name}}</td> -->
                     <td class="project-state">
-                    {{-- @if($category->status == 1)
+                    @if($category->status == 1)
                         <span class="badge badge-success">Active</span>
                     @else
                     <span class="badge badge-success">Inctive</span>
-                    @endif --}}
+                    @endif
                     </td>
 
                     <td class="project-actions text-right">
@@ -104,7 +104,7 @@
                         </a>
                     </td>
                 </tr>
-            {{-- @endforeach --}}
+            @endforeach
             </tbody>
         </table>
       </div>

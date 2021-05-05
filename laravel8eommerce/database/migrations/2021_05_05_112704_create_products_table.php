@@ -24,6 +24,8 @@ class CreateProductsTable extends Migration
             $table->text('short_description');
             $table->text('long_description');
             $table->integer('price');
+            $table->string('image');
+            $table->string('image_path')->nullable();
             $table->string('image_one');
             $table->string('image_two');
             $table->string('image_three');
