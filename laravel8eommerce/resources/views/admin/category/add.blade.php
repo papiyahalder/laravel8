@@ -31,7 +31,7 @@
         </div>
       @endif
 
-        <form action="{{ route('store.category') }}" method="POST">
+        <form action="" method="POST">
             @csrf
             <div>
             <div class="row">
@@ -90,7 +90,7 @@
       if(name!="" && status!=""){
         /*  $("#butsave").attr("disabled", "disabled"); */
           $.ajax({
-              url: "/admin/category/add",
+              url: "/admin/category/store",
               type: "POST",
               data: {
                   _token: $("#csrf").val(),
@@ -99,17 +99,17 @@
                   status: status
               },
               cache: false,
-              success: function(dataResult){
-                  console.log(dataResult);
-                  var dataResult = JSON.parse(dataResult);
-                  if(dataResult.statusCode==200){
-                    window.location = "/admin/category";				
-                  }
-                  else if(dataResult.statusCode==201){
-                      alert("Error occured !");
-                  }
-                  
+              success:function(response){
+              if(response.success){
+                  // alert(response.message) //Message come from controller
+                  window.location = "/admin/category";
+              }else{
+                  alert("Error")
               }
+           },
+           error:function(error){
+              console.log(error)
+           }
           });
       }
       else{

@@ -55,10 +55,11 @@ class CategoryController extends Controller
         // return redirect('admin/category/add')
         //     ->with('success', 'Category created successfully.');
         return json_encode(array(
-            "statusCode"=>200
+            "statusCode"=>200,
+            "message"=>"submited"
         ));
 
-        // return view('admin.category.add');
+        return view('admin.category.add');
     }
 
     /**
