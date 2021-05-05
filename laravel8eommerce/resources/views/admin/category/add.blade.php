@@ -31,7 +31,7 @@
         </div>
       @endif
 
-        <form action="" method="POST">
+        <form action="{{route('store.category')}}" method="POST" id="add-category">
             @csrf
             <div>
             <div class="row">
@@ -81,41 +81,58 @@
     </section>
     <!-- /.content -->
   </div>
-  <script>
-    $(document).ready(function() {
-    
-    $('#butsave').on('click', function() {
-      var name = $('#category_name').val();
-      var status = $('#status').val();
-      if(name!="" && status!=""){
-        /*  $("#butsave").attr("disabled", "disabled"); */
-          $.ajax({
-              url: "/admin/category/store",
-              type: "POST",
-              data: {
-                  _token: $("#csrf").val(),
-                  type: 1,
-                  name: category_name,
-                  status: status
-              },
-              cache: false,
-              success:function(response){
-              if(response.success){
-                  // alert(response.message) //Message come from controller
-                  window.location = "/admin/category";
-              }else{
-                  alert("Error")
-              }
-           },
-           error:function(error){
-              console.log(error)
-           }
-          });
-      }
-      else{
-          alert('Please fill all the field !');
-      }
-  });
-  });
+  
+<script src="{{ asset('public/admin/js/admin.js') }}"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+        $("form#add-category").on('submit', function(){
+
+            $("#butsave").attr('disabled', true);
+
+            
+            var formData = new FormData(this);
+            $.ajax({
+                method      : 'POST',
+                data        : formData,
+                url         : $(this).attr('action'),
+                processData : false, // Don't process the files
+                contentType : false, // Set content type to false as jQuery will tell the server its a query string request
+                dataType    : 'json',
+                success     : function(response){
+                    if(response.success == true)
+                    {
+                        swal({   
+                                title: "Success",   
+                                text: response.data,   
+                                type: "success",   
+                                showCancelButton: false,
+                                showConfirmButton: false,
+                                timer: 1000
+                        });
+                        //$("form#add-activity")[0].reset();
+                        location.reload();
+                    }
+                    else
+                    {
+                        $.notify(""+response.data+"", {type:"danger"});
+                        $("#butsave").attr('disabled', false);
+                    }
+                },
+                error       : function(data){
+                    var errors = $.parseJSON(data.responseText);
+                    $.each(errors, function(index, value) {
+                        $.notify(""+value+"", {type:"danger"});
+                    });
+                    $("#butsave").attr('disabled', false);
+                }
+
+            });
+            return false;
+
+        });
+    });
 </script>
 @endsection

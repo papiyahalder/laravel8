@@ -50,6 +50,10 @@ Route::prefix('/admin')->group(function () {
         Route::get('/brand/edit/{id}', 'App\Http\Controllers\Admin\BrandController@edit')->name('edit.brand');
         Route::post('/brand/update/{id}', 'App\Http\Controllers\Admin\BrandController@update')->name('update.brand');
         Route::get('/brand/destroy/{id}', 'App\Http\Controllers\Admin\BrandController@destroy')->name('brand.destroy');
+   
+        // --------------------------Admin Product--------------------------//
+        Route::get('/product/show', 'App\Http\Controllers\Admin\ProductController@index')->name('admin.product');
+        Route::get('/product/add', 'App\Http\Controllers\Admin\ProductController@create')->name('add.product');
     });
      
 });
