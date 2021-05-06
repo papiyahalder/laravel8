@@ -19,6 +19,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $products=Product::get();
+        // return $products;
         $categories = Category::get();
         // return $categories;
         return view('admin.product.index',compact('products','categories'));
@@ -64,18 +65,19 @@ class ProductController extends Controller
         
         $imag_one = $request->file('image_one');                
         $name_gen = hexdec(uniqid()).'.'.$imag_one->getClientOriginalExtension();
-        Image::make($imag_one)->resize(270,270)->save('fontend/img/product/upload/'.$name_gen);       
-        $img_url1 = 'fontend/img/product/upload/'.$name_gen;
+        Image::make($imag_one)->resize(270,270)->save(public_path('frontend/img/product/'.$name_gen));       
+        $img_url1 ='frontend/img/product/'.$name_gen;
 
         $imag_two = $request->file('image_two');                
         $name_gen = hexdec(uniqid()).'.'.$imag_two->getClientOriginalExtension();
-        Image::make($imag_two)->resize(270,270)->save('fontend/img/product/upload/'.$name_gen);     
-        $img_url2 = 'fontend/img/product/upload/'.$name_gen;
-
+        Image::make($imag_two)->resize(270,270)->save(public_path('frontend/img/product/'.$name_gen));     
+        $img_url2 = 'frontend/img/product/'.$name_gen;
+        // $path = public_path('images/cars/'.$filename);
+        // Image::make($image->getRealPath())->resize(468,249)->save($path);
         $imag_three = $request->file('image_three');                
         $name_gen = hexdec(uniqid()).'.'.$imag_three->getClientOriginalExtension();
-        Image::make($imag_three)->resize(270,270)->save('fontend/img/product/upload/'.$name_gen);       
-        $img_url3 = 'fontend/img/product/upload/'.$name_gen;
+        Image::make($imag_three)->resize(270,270)->save(public_path('frontend/img/product/'.$name_gen));       
+        $img_url3 = 'frontend/img/product/'.$name_gen;
             $fileModal = new Product();
             // $data = $request->input();
             $fileModal->category_id = $request->input('category_id');
@@ -88,9 +90,9 @@ class ProductController extends Controller
             $fileModal->short_description = $request->input('short_description');
             $fileModal->long_description = $request->input('long_description');
             $fileModal->status = $request->input('status');
-            $fileModal->image_one = $request->input('img_url1');
-            $fileModal->image_two = $request->input('img_url2');
-            $fileModalimage_three =  $request->input('img_url3');
+            $fileModal->image_one = $img_url1;
+            $fileModal->image_two = $img_url2;
+            $fileModalimage_three = $img_url3;
             // 'created_at' => Carbon::now(),
             if($request->hasfile('imageFile')) {
             foreach($request->file('imageFile') as $file)

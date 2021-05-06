@@ -74,8 +74,10 @@
                     <td>
                         #
                     </td>
-                    <td><img src="{{url('fontend/img/product/upload/'.$product->image_one)}}" width="50px;" height="50px;" alt=""></td>
-                    {{-- <td>{{$product->image}}</td> --}}
+                   
+                    <td><img src="{{ asset($product->image_one) }}" width="50px;" height="50px;" alt=""></td>
+                   
+                    <!-- <td><img src=" {{url(json_decode('uploads/',$product->image))}}" class="img-fluid" style="height:100px"></td> -->
                     <td>{{$product->product_name}}</td>
                     <td>{{$product->product_quantity}}</td>
                     <td>{{$product->category->category_name}}</td>
@@ -118,3 +120,5 @@
  </div>
  <!-- /.content-wrapper -->
 @endsection
+
+
