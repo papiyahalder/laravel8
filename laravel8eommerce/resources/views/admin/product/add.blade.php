@@ -32,7 +32,7 @@ hii
         </div>
       @endif
 
-      <form action="{{ route('add.store') }}" method="POST" enctype="multipart/form-data">
+      <form action="{{ route('store.product') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-layout">
                 @if(session('success'))
@@ -132,7 +132,17 @@ hii
                       @enderror
                     </div>
                   </div><!-- col-4 -->
-
+                  <div class="form-group">
+                    <label for="inputStatus">Status</label>
+                    <select class="form-control custom-select  @error('status') is-invalid @enderror" name="status" id="status">
+                    <option selected disabled>Select one</option>
+                    <option value="1">Active</option>
+                    <option value="0">Inactive</option>
+                    </select>
+                    @error('status')
+                    <span class="text-danger">{{$message}}</span>
+                  @enderror
+                </div>
                   
                 <div class="col-lg-4">
                     <div class="form-group">
@@ -142,7 +152,7 @@ hii
                       <strong class="text-danger">{{ $message }}</strong> 
                       @enderror
                     </div>
-                  </div><!-- col-4 -->
+                  </div><!--   -4 -->
 
                   <div class="col-lg-4">
                     <div class="form-group">
@@ -166,7 +176,7 @@ hii
                   
                   <div class="col-lg-4">
                     <div class="form-group">
-                        <input type="file" name="imageFile[]" class="form-control" id="images" multiple="multiple">
+                        <input type="file" name="imageFile[]" class="form-control" id="images" multiple>
                         <label class="form-control-label" for="images">Choose image</label>
                     </div>
                   </div>   

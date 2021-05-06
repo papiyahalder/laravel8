@@ -54,6 +54,13 @@
                       @endif
                       @endforeach --}}
                     </select>
+                    {{-- <select class="form-control select2" name="status" data-placeholder="Choose Status">
+                      <option label="Choose Status"></option>
+                        @foreach ($categories as $category)                            
+                      <option value="{{ $category->status }}" {{ $category->status == $category->status ? "selected":"" }}>{{ $category->status }}</option>
+                      @endforeach
+    
+                    </select> --}}
                   </div>
                 </div>
               <!-- /.card-body -->

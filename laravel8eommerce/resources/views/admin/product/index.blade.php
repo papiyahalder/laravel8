@@ -55,7 +55,7 @@
                     <th class="wd-15p">Product Name</th>
                     <th class="wd-15p">Product Quantity</th>
                     <th class="wd-15p">Category</th>
-                    <th class="wd-20p">Status</th>  
+                    <th class="wd-20p">Status</th> 
                     <th style="width: 20%">
                       <form class="navbar-form navbar-left" method="GET" action="{{url('search')}}">
                         <div class="input-group">
@@ -69,17 +69,18 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach ($products as $product) 
+            @foreach ($products as $product)
             <tr>
                     <td>
                         #
                     </td>
-                    <td>{{$product->image_one}}</td>
+                    <td><img src="{{url('fontend/img/product/upload/'.$product->image_one)}}" width="50px;" height="50px;" alt=""></td>
+                    {{-- <td>{{$product->image}}</td> --}}
                     <td>{{$product->product_name}}</td>
                     <td>{{$product->product_quantity}}</td>
-                    <!-- <td>{{$product->categories->category_name}}</td> -->
+                    <td>{{$product->category->category_name}}</td>
                     <td class="project-state">
-                    @if($category->status == 1)
+                    @if($product->status == 1)
                         <span class="badge badge-success">Active</span>
                     @else
                     <span class="badge badge-success">Inctive</span>
