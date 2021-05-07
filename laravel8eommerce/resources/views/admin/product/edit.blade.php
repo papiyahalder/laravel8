@@ -22,170 +22,118 @@
 
     <!-- Main content -->
     <section class="content">
-    <form action="{{ route('update.product',$products->id) }}" method="POST">
-        @csrf
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card card-primary">
-                <div class="row mg-b-25">
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <label class="form-control-label">Product Name: <span class="tx-danger">*</span></label>
-                        <input class="form-control" type="text" name="product_name" value="{{ $products->product_name}}" placeholder="product name">
-                        @error('product_name')
-                           <strong class="text-danger">{{ $message }}</strong> 
-                        @enderror
-                      </div>
-                    </div><!-- col-4 -->
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <label class="form-control-label">product_code: <span class="tx-danger">*</span></label>
-                        <input class="form-control" type="text" name="product_code" value="{{ $products->product_code }}" placeholder="product code">
-                        @error('product_code')
-                        <strong class="text-danger">{{ $message }}</strong> 
-                        @enderror
-                      </div>
-                    </div><!-- col-4 -->
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <label class="form-control-label">Price: <span class="tx-danger">*</span></label>
-                        <input class="form-control" type="text" name="price" value="{{ $products->price }}" placeholder="product price">
-                        @error('price')
-                        <strong class="text-danger">{{ $message }}</strong> 
-                        @enderror
-                      </div>
-                    </div><!-- col-4 -->
-    
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                          <label class="form-control-label">Quantity: <span class="tx-danger">*</span></label>
-                          <input class="form-control" type="number" name="product_quantity" value="{{ $products->product_quantity }}" placeholder="product quantity">
-                          @error('product_quantity')
-                          <strong class="text-danger">{{ $message }}</strong> 
-                          @enderror
-                        </div>
-                      </div><!-- col-4 -->
-                   
-                    <div class="col-lg-4">
-                      <div class="form-group mg-b-10-force">
-                        <label class="form-control-label">Category: <span class="tx-danger">*</span></label>
-                        <select class="form-control select2" name="category_id" data-placeholder="Choose country">
-                          <option label="Choose category"></option>
-                          @foreach ($categories as $category)                            
-                          <option value="{{ $category->id }}" {{ $category->id == $products->category_id ? "selected":"" }}>{{ $category->category_name }}</option>
-                          @endforeach
-                        </select>
-                        @error('category_id')
-                        <strong class="text-danger">{{ $message }}</strong> 
-                        @enderror
-                      </div>
-                    </div><!-- col-4 -->
-                  
-                    <div class="col-lg-4">
-                        <div class="form-group mg-b-10-force">
-                          <label class="form-control-label">Brand: <span class="tx-danger">*</span></label>
-                          <select class="form-control select2" name="brand_id" data-placeholder="Choose country">
-                            <option label="Choose brand"></option>
-                            @foreach ($brands as $brand)                            
-                            <option value="{{ $brand->id }}"{{ $brand->id == $products->brand_id ? "selected":""}}>{{ $brand->brand_name }}</option>
-                            @endforeach     
-                          </select>
-                          @error('brand_id')
-                          <strong class="text-danger">{{ $message }}</strong> 
-                          @enderror
-                        </div>
-                      </div><!-- col-4 -->
-                      <div class="col-lg-12">
-                        <div class="form-group">
-                          <label class="form-control-label">Short Description: <span class="tx-danger">*</span></label>
-                          <textarea name="short_description" id="summernote">{{ $products->short_description }}</textarea>
-                          @error('short_description')
-                          <strong class="text-danger">{{ $message }}</strong> 
-                          @enderror
-                        </div>
-                      </div><!-- col-4 -->
-    
-    
-                      <div class="col-lg-12">
-                        <div class="form-group">
-                          <label class="form-control-label">Long Description: <span class="tx-danger">*</span></label>
-                          <textarea name="long_description" id="summernote2">{{ $products->long_description }}</textarea>
-                          @error('long_description')
-                          <strong class="text-danger">{{ $message }}</strong> 
-                          @enderror
-                        </div>
-                      </div><!-- col-4 -->
-                      <div class="form-group">
-                        <label for="inputStatus">Status</label>
-                        <select class="form-control custom-select  @error('status') is-invalid @enderror" name="status" id="status">
-                        <option selected disabled>Select one</option>
-                        <option value="1">Active</option>
-                        <option value="0">Inactive</option>
-                        </select>
-                        @error('status')
-                        <span class="text-danger">{{$message}}</span>
+    <div class="card pd-20 pd-sm-40">
+            <h6 class="card-body-title">Update Products</h6>
+            <form action="{{ route('update.product',$products->id) }}" method="POST" >
+            @csrf
+            
+            <div class="form-layout">
+                @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{session('success')}}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  @endif
+              <div class="row mg-b-25">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label">Product Name: <span class="tx-danger">*</span></label>
+                    <input class="form-control" type="text" name="product_name" value="{{ $products->product_name }}" placeholder="product name">
+                    @error('product_name')
+                       <strong class="text-danger">{{ $message }}</strong> 
+                    @enderror
+                  </div>
+                </div><!-- col-4 -->
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label">product_code: <span class="tx-danger">*</span></label>
+                    <input class="form-control" type="text" name="product_code" value="{{ $products->product_code }}" placeholder="product code">
+                    @error('product_code')
+                    <strong class="text-danger">{{ $message }}</strong> 
+                    @enderror
+                  </div>
+                </div><!-- col-4 -->
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label">Price: <span class="tx-danger">*</span></label>
+                    <input class="form-control" type="text" name="price" value="{{ $products->price }}" placeholder="product price">
+                    @error('price')
+                    <strong class="text-danger">{{ $message }}</strong> 
+                    @enderror
+                  </div>
+                </div><!-- col-4 -->
+
+                <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label">Quantity: <span class="tx-danger">*</span></label>
+                      <input class="form-control" type="number" name="product_quantity" value="{{ $products->product_quantity }}" placeholder="product quantity">
+                      @error('product_quantity')
+                      <strong class="text-danger">{{ $message }}</strong> 
                       @enderror
                     </div>
-                      
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                          <label class="form-control-label">Main thambnail: <span class="tx-danger">*</span></label>
-                          <input class="form-control" type="file" name="image_one" >
-                          @error('image_one')
-                          <strong class="text-danger">{{ $message }}</strong> 
-                          @enderror
-                        </div>
-                      </div><!--   -4 -->
+                  </div><!-- col-4 -->
+               
+                <div class="col-lg-4">
+                  <div class="form-group mg-b-10-force">
+                    <label class="form-control-label">Category: <span class="tx-danger">*</span></label>
+                    <select class="form-control select2" name="category_id" data-placeholder="Choose country">
+                      <option label="Choose category"></option>
+                        @foreach ($categories as $category)                            
+                      <option value="{{ $category->id }}" {{ $category->id == $products->category_id ? "selected":"" }}>{{ $category->category_name }}</option>
+                      @endforeach
     
-                      <div class="col-lg-4">
-                        <div class="form-group">
-                          <label class="form-control-label">Image Two: <span class="tx-danger">*</span></label>
-                          <input class="form-control" type="file" name="image_two" >
-                          @error('image_two')
-                          <strong class="text-danger">{{ $message }}</strong> 
-                          @enderror
-                        </div>
-                      </div><!-- col-4 -->
-    
-                      <div class="col-lg-4">
-                        <div class="form-group">
-                          <label class="form-control-label">Image Three: <span class="tx-danger">*</span></label>
-                          <input class="form-control" type="file" name="image_three" >
-                          @error('image_three')
-                          <strong class="text-danger">{{ $message }}</strong> 
-                          @enderror
-                        </div>
-                      </div><!-- col-4 -->              
-                      
-                      <div class="col-lg-4">
-                        <div class="form-group">
-                          <label class="form-control-label" for="images">Choose image: <span class="tx-danger">*</span></label>
-                          <input type="file" name="imageFile[]" class="form-control" id="images" multiple>
-                          @error('imageFile[]')
-                          <strong class="text-danger">{{ $message }}</strong> 
-                          @enderror
-                        </div>
-                      </div>
-                      {{-- <div class="col-lg-4">
-                        <div class="form-group">
-                            
-                            <label class="form-control-label" for="images">Choose image</label>
-                        </div>
-                      </div>  --}}
-                  </div><!-- row -->
-            </div>
-            <!-- /.card -->
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <a href="#" class="btn btn-secondary">Cancel</a>
-            <input type="submit" value="Save Changes" class="btn btn-success float-right">
-          </div>
-        </div>
-        </form>
-        
-        <form action="" method="POST" enctype="multipart/form-data">
+                    </select>
+                    @error('category_id')
+                    <strong class="text-danger">{{ $message }}</strong> 
+                    @enderror
+                  </div>
+                </div><!-- col-4 -->
+              
+                <div class="col-lg-4">
+                    <div class="form-group mg-b-10-force">
+                      <label class="form-control-label">Brand: <span class="tx-danger">*</span></label>
+                      <select class="form-control select2" name="brand_id" data-placeholder="Choose country">
+                        <option label="Choose brand"></option>
+                        @foreach ($brands as $brand)                            
+                        <option value="{{ $brand->id }}" {{ $brand->id == $products->brand_id ? "selected":"" }}>{{ $brand->brand_name }}</option>
+                        @endforeach     
+                      </select>
+                      @error('brand_id')
+                      <strong class="text-danger">{{ $message }}</strong> 
+                      @enderror
+                    </div>
+                  </div><!-- col-4 -->
+                  <div class="col-lg-12">
+                    <div class="form-group">
+                      <label class="form-control-label">Short Description: <span class="tx-danger">*</span></label>
+                      <textarea name="short_description" id="summernote">{{ $products->short_description }}</textarea>
+                      @error('short_description')
+                      <strong class="text-danger">{{ $message }}</strong> 
+                      @enderror
+                    </div>
+                  </div><!-- col-4 -->
+
+
+                  <div class="col-lg-12">
+                    <div class="form-group">
+                      <label class="form-control-label">Long Description: <span class="tx-danger">*</span></label>
+                      <textarea name="long_description" id="summernote2">{{ $products->long_description }}</textarea>
+                      @error('long_description')
+                      <strong class="text-danger">{{ $message }}</strong> 
+                      @enderror
+                    </div>
+                  </div><!-- col-4 -->
+               
+                  
+              </div><!-- row -->
+             
+              <button class="btn btn-info mg-r-5" type="submit">Udpate Data</button>
+
+          </form>
+
+          <form action="{{ route('update-image') }}" method="POST" enctype="multipart/form-data">
             @csrf 
             <input type="hidden" name="id" value="{{ $products->id }}">
             <input type="hidden" name="img_one" value="{{ $products->image_one }}">
@@ -248,7 +196,10 @@
               <div class="form-layout-footer">
                 <button class="btn btn-info mg-r-5">Udpate Image</button>
               </div><!-- form-layout-footer -->
-            </form>
+            </form> 
+            </div><!-- form-layout -->
+          </div><!-- card -->
+    </div>
     </section>
     <!-- /.content -->
   </div>

@@ -147,7 +147,104 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // $products = Product::findOrFail($id);
+
+        Product::findOrFail($id)->Update([
+            'category_id' => $request->category_id,
+            'brand_id' => $request->brand_id,
+            'product_name' => $request->product_name,
+            'product_slug' => strtolower(str_replace(' ','-',$request->product_name)),
+            'product_code' => $request->product_code,
+            'price' => $request->price,
+            'product_quantity' => $request->product_quantity,
+            'short_description' => $request->short_description,
+            'long_description' => $request->long_description,
+        ]);
+
+        return redirect('admin/product/edit/'.$id);
+    }
+
+    public function updateImage(Request $request)
+    {
+        $product_id = $request->id;
+        $old_one = $request->img_one;
+        $old_two = $request->img_two;
+        $old_three = $request->img_three;
+
+
+        if ($request->has('image_one') && $request->has('image_two')) {
+            unlink($old_one);
+            unlink($old_two);
+            $imag_one = $request->file('image_one');                
+             $name_gen = hexdec(uniqid()).'.'.$imag_one->getClientOriginalExtension();
+             Image::make($imag_one)->resize(270,270)->save('fontend/img/product/upload/'.$name_gen);       
+             $img_url1 = 'fontend/img/product/upload/'.$name_gen;
+ 
+             Product::findOrFail($product_id)->update([
+                 'image_one' => $img_url1,
+                //  'updated_at' => Carbon::now(),
+             ]);
+
+             $imag_one = $request->file('image_two');                
+             $name_gen = hexdec(uniqid()).'.'.$imag_one->getClientOriginalExtension();
+             Image::make($imag_one)->resize(270,270)->save('fontend/img/product/upload/'.$name_gen);       
+             $img_url1 = 'fontend/img/product/upload/'.$name_gen;
+ 
+             Product::findOrFail($product_id)->update([
+                 'image_two' => $img_url1,
+                //  'updated_at' => Carbon::now(),
+             ]);
+ 
+ 
+             return redirect('admin/product/edit/'.$id);
+         }
+         
+        if ($request->has('image_one')) {
+           unlink($old_one);
+           $imag_one = $request->file('image_one');                
+            $name_gen = hexdec(uniqid()).'.'.$imag_one->getClientOriginalExtension();
+            Image::make($imag_one)->resize(270,270)->save('fontend/img/product/upload/'.$name_gen);       
+            $img_url1 = 'fontend/img/product/upload/'.$name_gen;
+
+            Product::findOrFail($product_id)->update([
+                'image_one' => $img_url1,
+                // 'updated_at' => Carbon::now(),
+            ]);
+
+            return redirect('admin/product/edit/'.$id);
+        }
+
+        if ($request->has('image_two')) {
+            unlink($old_two);
+            $imag_one = $request->file('image_two');                
+             $name_gen = hexdec(uniqid()).'.'.$imag_one->getClientOriginalExtension();
+             Image::make($imag_one)->resize(270,270)->save('fontend/img/product/upload/'.$name_gen);       
+             $img_url1 = 'fontend/img/product/upload/'.$name_gen;
+ 
+             Product::findOrFail($product_id)->update([
+                 'image_two' => $img_url1,
+                //  'updated_at' => Carbon::now(),
+             ]);
+ 
+             return redirect('admin/product/edit/'.$id);
+         }
+
+         if ($request->has('image_three')) {
+            unlink($old_three);
+            $imag_one = $request->file('image_three');                
+             $name_gen = hexdec(uniqid()).'.'.$imag_one->getClientOriginalExtension();
+             Image::make($imag_one)->resize(270,270)->save('fontend/img/product/upload/'.$name_gen);       
+             $img_url1 = 'fontend/img/product/upload/'.$name_gen;
+ 
+             Product::findOrFail($product_id)->update([
+                 'image_three' => $img_url1,
+                //  'updated_at' => Carbon::now(),
+             ]);
+ 
+             return redirect('admin/product/edit/'.$id);
+         }
+
+        
     }
 
     /**
