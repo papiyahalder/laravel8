@@ -109,6 +109,7 @@ class ProductController extends Controller
            
             $fileModal->save();
         }
+        return redirect('admin/product/add');
 
     }
 
@@ -131,7 +132,10 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories = Category::get();
+        $brands = Brand::get();
+        $products = Product::findOrFail($id);
+        return view('admin.product.edit',compact('products','categories','brands'));
     }
 
     /**

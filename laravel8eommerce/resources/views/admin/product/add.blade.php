@@ -33,7 +33,7 @@ hii
       @endif
 
       <form action="{{ route('store.product') }}" method="POST" enctype="multipart/form-data">
-            @csrf
+          @csrf
             <div class="form-layout">
                 @if(session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -176,10 +176,19 @@ hii
                   
                   <div class="col-lg-4">
                     <div class="form-group">
-                        <input type="file" name="imageFile[]" class="form-control" id="images" multiple>
+                      <label class="form-control-label" for="images">Choose image: <span class="tx-danger">*</span></label>
+                      <input type="file" name="imageFile[]" class="form-control" id="images" multiple>
+                      @error('imageFile[]')
+                      <strong class="text-danger">{{ $message }}</strong> 
+                      @enderror
+                    </div>
+                  </div>
+                  {{-- <div class="col-lg-4">
+                    <div class="form-group">
+                        
                         <label class="form-control-label" for="images">Choose image</label>
                     </div>
-                  </div>   
+                  </div>  --}}
               </div><!-- row -->
   
               <div class="row">
