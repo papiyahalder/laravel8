@@ -1,10 +1,8 @@
+
 @extends('layouts.admin_layout.admin_layout')
 @section('content')
-
-
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
+   <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
@@ -13,20 +11,24 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Category Edit</li>
+              <li class="breadcrumb-item active">Category Add</li>
             </ol>
           </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
 
-    <!-- Main content -->
     <section class="content">
-    <div class="card pd-20 pd-sm-40">
-            <h6 class="card-body-title">Update Products</h6>
+      @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>{{session('success')}}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+      @endif
             <form action="{{ route('update.product',$products->id) }}" method="POST" >
             @csrf
-            
             <div class="form-layout">
                 @if(session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -133,9 +135,9 @@
 
           </form>
 
-          <form action="{{ route('update-image') }}" method="POST" enctype="multipart/form-data">
+      
+         <form action="{{ route('update.image',$products->id) }}" method="POST" enctype="multipart/form-data">
             @csrf 
-            <input type="hidden" name="id" value="{{ $products->id }}">
             <input type="hidden" name="img_one" value="{{ $products->image_one }}">
             <input type="hidden" name="img_two" value="{{ $products->image_two }}">
             <input type="hidden" name="img_three" value="{{ $products->image_three }}">
@@ -197,10 +199,7 @@
                 <button class="btn btn-info mg-r-5">Udpate Image</button>
               </div><!-- form-layout-footer -->
             </form> 
-            </div><!-- form-layout -->
-          </div><!-- card -->
-    </div>
-    </section>
-    <!-- /.content -->
-  </div>
+          </section>
+
+</div>
 @endsection
