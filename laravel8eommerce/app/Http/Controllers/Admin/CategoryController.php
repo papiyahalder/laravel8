@@ -50,7 +50,7 @@ class CategoryController extends Controller
         //     'category_name' => $request->category_name,
         //     'created_at' => Carbon::now()
         // ]);
-        Category::create($request->all());
+        $data=Category::create($request->all());
 
         // return redirect('admin/category/add')
         //     ->with('success', 'Category created successfully.');
@@ -59,10 +59,19 @@ class CategoryController extends Controller
         //     "message"=>"submited",
         //     'success' => true,
         // ));
-        return response()->json([ "statusCode"=>200,
-        "message"=>"submited",
-        'success' => true,]);
-        // return view('admin.category.add');
+        // return response()->json([ "status"=>200,
+        // "message"=>"submited",
+        // 'success' => true,]);
+        if ($data) {
+            return response()->json([
+                "status"=>200,
+                "message"=>"submited",
+                'success' => true,]);
+        } else {
+            return response()->json([
+                'status' => 'error']);
+        }
+        return view('admin.category.add');
     }
 
     /**

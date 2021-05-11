@@ -37,7 +37,7 @@ Route::prefix('/admin')->group(function () {
         // ----------------------Admin Category------------------------------//
         Route::get('/category/show', 'App\Http\Controllers\Admin\CategoryController@search');
         Route::get('/category', 'App\Http\Controllers\Admin\CategoryController@index')->name('admin.category');
-        Route::get('/category/store', 'App\Http\Controllers\Admin\CategoryController@create')->name('add.category');
+        Route::get('/category/add', 'App\Http\Controllers\Admin\CategoryController@create')->name('add.category');
         Route::post('/category/store', 'App\Http\Controllers\Admin\CategoryController@store')->name('store.category');
         Route::get('/category/edit/{id}', 'App\Http\Controllers\Admin\CategoryController@edit')->name('edit.category');
         Route::post('/category/update/{id}', 'App\Http\Controllers\Admin\CategoryController@update')->name('update.category');
