@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Coupon;
+use App\Models\Category;
 
-class CouponController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,8 @@ class CouponController extends Controller
      */
     public function index()
     {
-        $coupons = Coupon::get();
-        return view('admin.coupon.index',compact('coupons'));
+        $categories = Category::get();
+        return view('layouts/frontend', compact('categories'));
     }
 
     /**
@@ -26,7 +25,7 @@ class CouponController extends Controller
      */
     public function create()
     {
-        return view('admin.coupon.add');
+        //
     }
 
     /**
@@ -37,24 +36,7 @@ class CouponController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'coupon_name' => 'required|unique:coupons,coupon_name',
-            'status' => 'required'
-        ]);
-        
-        $data=Coupon::create($request->all());
-
-       
-        // if ($data) {
-        //     return response()->json([
-        //         "status"=>200,
-        //         "message"=>"submited",
-        //         'success' => true,]);
-        // } else {
-        //     return response()->json([
-        //         'status' => 'error']);
-        // }
-        return view('admin.coupon.add');
+        //
     }
 
     /**
@@ -65,7 +47,7 @@ class CouponController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**
@@ -76,8 +58,7 @@ class CouponController extends Controller
      */
     public function edit($id)
     {
-        $coupons = Coupon::findOrFail($id);
-        return view ('admin.coupon.edit',compact('coupons'));
+        //
     }
 
     /**
@@ -89,13 +70,7 @@ class CouponController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $update = Coupon::findOrFail($id);
-        $update->coupon_name=$request->get('coupon_name');
-        $update->discount=$request->get('discount');
-        $update->save();
-        return redirect ('admin/coupon/edit/'.$id);
-
-
+        //
     }
 
     /**

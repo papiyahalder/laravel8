@@ -22,7 +22,7 @@
 
     <!-- Main content -->
     <section class="content">
-    <form action="" method="POST">
+    <form action="{{ route('update.coupon' , $coupons->id) }}" method="POST">
         @csrf
         <div class="row">
           <div class="col-md-12">
@@ -43,15 +43,6 @@
                   <div class="form-group">
                     <label for="coupon_name">Discount</label>
                     <input type="text"name="discount" id="coupon_name" class="form-control" value="{{ $coupons->discount }}">
-                  </div>
-                  <div class="form-group">
-                    <label for="inputStatus">Status</label>
-                    <select class="form-control custom-select">
-                     
-                      <option value="0" selected>Inactive</option>
-                      <option value="1" selected>Active</option>
-                    </select>
-                    
                   </div>
                 </div>
               <!-- /.card-body -->
