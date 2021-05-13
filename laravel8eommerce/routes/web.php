@@ -57,8 +57,10 @@ Route::prefix('/admin')->group(function () {
         Route::post('/product/store', 'App\Http\Controllers\Admin\ProductController@store')->name('store.product');
         Route::get('/product/edit/{id}', 'App\Http\Controllers\Admin\ProductController@edit')->name('edit.product');
         Route::post('/product/update/{id}', 'App\Http\Controllers\Admin\ProductController@update')->name('update.product');
-        Route::Post('/product/update/image/{id}', 'App\Http\Controllers\Admin\ProductController@updateImage')->name('update.image');
+        Route::post('/product/update/image/{id}', 'App\Http\Controllers\Admin\ProductController@updateImage')->name('update.image');
+        Route::get('/product/destroy/{id}', 'App\Http\Controllers\Admin\ProductController@destroy')->name('delete.product');
         // Route::post('/products/image-update','Admin\ProductController@updateImage')->name('update-image');
+        
     });
      
 });

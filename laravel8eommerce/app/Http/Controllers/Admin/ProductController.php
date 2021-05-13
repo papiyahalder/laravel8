@@ -166,116 +166,149 @@ class ProductController extends Controller
 
     public function updateImage(Request $request, $id)
     {
-        // print_r("ggg");exit;
-        // $product_id = $request->id;
-        $old_one = $request->img_one;
-        // print_r( $old_one);exit;
-        $old_two = $request->img_two;
-        $old_three = $request->img_three;
-
-
-        if ($request->has('image_one') && $request->has('image_two')) {
-            unlink($old_one);
-            unlink($old_two);
+       
+        if ($request->has('image_one') && $request->has('image_two') && $request->has('image_three')) {
             $imag_one = $request->file('image_one');                
             $name_gen = hexdec(uniqid()).'.'.$imag_one->getClientOriginalExtension();
             Image::make($imag_one)->resize(270,270)->save(public_path('frontend/img/product/'.$name_gen));       
             $img_url1 ='frontend/img/product/'.$name_gen;
              
- 
-            //  Product::findOrFail($id)->update([
-            //      'image_one' => $img_url1,
-            //     //  'updated_at' => Carbon::now(),
-            //  ]);
-
-
-             $fileModal = new Product();
-             $fileModal->image_one = $img_url1;
-            
-             $fileModal->save();
-
-            $imag_tow = $request->file('image_two');                
-            $name_gen = hexdec(uniqid()).'.'.$imag_tow->getClientOriginalExtension();
-            Image::make($imag_tow)->resize(270,270)->save(public_path('frontend/img/product/'.$name_gen));       
+             Product::findOrFail($id)->update([
+                 'image_one' => $img_url1,
+                //  'updated_at' => Carbon::now(),
+             ]);
+            $imag_two = $request->file('image_two');                
+            $name_gen = hexdec(uniqid()).'.'.$imag_two->getClientOriginalExtension();
+            Image::make($imag_two)->resize(270,270)->save(public_path('frontend/img/product/'.$name_gen));       
             $img_url2 ='frontend/img/product/'.$name_gen;
  
-            //  Product::findOrFail($id)->update([
-            //      'image_two' => $img_url2,
-            //     //  'updated_at' => Carbon::now(),
-            //  ]);
+             Product::findOrFail($id)->update([
+                 'image_two' => $img_url2,
+                //  'updated_at' => Carbon::now(),
+             ]);
+            $imag_three = $request->file('image_three');                
+            $name_gen = hexdec(uniqid()).'.'.$imag_three->getClientOriginalExtension();
+            Image::make($imag_three)->resize(270,270)->save(public_path('frontend/img/product/'.$name_gen));       
+            $img_url2 ='frontend/img/product/'.$name_gen;
+ 
+             Product::findOrFail($id)->update([
+                 'image_three' => $img_url2,
+                //  'updated_at' => Carbon::now(),
+             ]);
+             return redirect('admin/product/edit/'.$id);
+         }
 
-            $fileModal = new Product();
-            $fileModal->image_two = $img_url2;
+         if ($request->has('image_one')  && $request->has('image_three')) {
+            // unlink($old_one);
+            // unlink($old_two);
+            $imag_one = $request->file('image_one');                
+            $name_gen = hexdec(uniqid()).'.'.$imag_one->getClientOriginalExtension();
+            Image::make($imag_one)->resize(270,270)->save(public_path('frontend/img/product/'.$name_gen));       
+            $img_url1 ='frontend/img/product/'.$name_gen;
+             
+             Product::findOrFail($id)->update([
+                 'image_one' => $img_url1,
+                //  'updated_at' => Carbon::now(),
+             ]);
            
-            $fileModal->save();
+            $imag_three = $request->file('image_three');                
+            $name_gen = hexdec(uniqid()).'.'.$imag_three->getClientOriginalExtension();
+            Image::make($imag_three)->resize(270,270)->save(public_path('frontend/img/product/'.$name_gen));       
+            $img_url2 ='frontend/img/product/'.$name_gen;
  
+             Product::findOrFail($id)->update([
+                 'image_three' => $img_url2,
+                //  'updated_at' => Carbon::now(),
+             ]);
+             return redirect('admin/product/edit/'.$id);
+         }
+
+         if ($request->has('image_one') && $request->has('image_two') ) {
+            $imag_one = $request->file('image_one');                
+            $name_gen = hexdec(uniqid()).'.'.$imag_one->getClientOriginalExtension();
+            Image::make($imag_one)->resize(270,270)->save(public_path('frontend/img/product/'.$name_gen));       
+            $img_url1 ='frontend/img/product/'.$name_gen;
+             
+             Product::findOrFail($id)->update([
+                 'image_one' => $img_url1,
+                //  'updated_at' => Carbon::now(),
+             ]);
+            $imag_two = $request->file('image_two');                
+            $name_gen = hexdec(uniqid()).'.'.$imag_two->getClientOriginalExtension();
+            Image::make($imag_two)->resize(270,270)->save(public_path('frontend/img/product/'.$name_gen));       
+            $img_url2 ='frontend/img/product/'.$name_gen;
  
+             Product::findOrFail($id)->update([
+                 'image_two' => $img_url2,
+                //  'updated_at' => Carbon::now(),
+             ]);
+            
+             return redirect('admin/product/edit/'.$id);
+         }
+
+         if ($request->has('image_two') && $request->has('image_three')) {
+           
+            $imag_two = $request->file('image_two');                
+            $name_gen = hexdec(uniqid()).'.'.$imag_two->getClientOriginalExtension();
+            Image::make($imag_two)->resize(270,270)->save(public_path('frontend/img/product/'.$name_gen));       
+            $img_url2 ='frontend/img/product/'.$name_gen;
+ 
+             Product::findOrFail($id)->update([
+                 'image_two' => $img_url2,
+                //  'updated_at' => Carbon::now(),
+             ]);
+            $imag_three = $request->file('image_three');                
+            $name_gen = hexdec(uniqid()).'.'.$imag_three->getClientOriginalExtension();
+            Image::make($imag_three)->resize(270,270)->save(public_path('frontend/img/product/'.$name_gen));       
+            $img_url2 ='frontend/img/product/'.$name_gen;
+ 
+             Product::findOrFail($id)->update([
+                 'image_three' => $img_url2,
+                //  'updated_at' => Carbon::now(),
+             ]);
              return redirect('admin/product/edit/'.$id);
          }
          
         if ($request->has('image_one')) {
-        //     $deletelogo = Product::where('id',$request->id)->first();
-
-        //     $logo = $deletelogo->logo;
-        // //    unlink($old_one);
-        Product::Select('image_one')->where('id',$request->id)->find($id)->delete();
-           delete(public_path('frontend/img/product/'.$logo));
-            // unlink(public_path('frontend/img/product/'.$old_one));
            $imag_one = $request->file('image_one');                
            $name_gen = hexdec(uniqid()).'.'.$imag_one->getClientOriginalExtension();
            Image::make($imag_one)->resize(270,270)->save(public_path('frontend/img/product/'.$name_gen));       
            $img_url1 ='frontend/img/product/'.$name_gen;
 
-            // Product::findOrFail($id)->update([
-            //     'image_one' => $img_url1,
-            //     // 'updated_at' => Carbon::now(),
-            // ]);
-
-            $fileModal = new Product();
-            $fileModal->image_one = $img_url1;
-           
-            $fileModal->save();
-
+            Product::findOrFail($id)->update([
+                'image_one' => $img_url1,
+                // 'updated_at' => Carbon::now(),
+            ]);
             return redirect('admin/product/edit/'.$id);
         }
 
         if ($request->has('image_two')) {
-            unlink($old_two);
-            $imag_tow = $request->file('image_two');                
-            $name_gen = hexdec(uniqid()).'.'.$imag_tow->getClientOriginalExtension();
-            Image::make($imag_tow)->resize(270,270)->save(public_path('frontend/img/product/'.$name_gen));       
+            // unlink($old_three);
+            $imag_two = $request->file('image_two');                
+            $name_gen = hexdec(uniqid()).'.'.$imag_two->getClientOriginalExtension();
+            Image::make($imag_two)->resize(270,270)->save(public_path('frontend/img/product/'.$name_gen));       
             $img_url2 ='frontend/img/product/'.$name_gen;
  
-            //  Product::findOrFail($id)->update([
-            //      'image_two' => $img_url2,
-            //     //  'updated_at' => Carbon::now(),
-            //  ]);
+             Product::findOrFail($id)->update([
+                 'image_two' => $img_url2,
+                //  'updated_at' => Carbon::now(),
+             ]);
 
-            $fileModal = new Product();
-            $fileModal->image_two = $img_url2;
-           
-            $fileModal->save();
- 
              return redirect('admin/product/edit/'.$id);
          }
 
          if ($request->has('image_three')) {
-            unlink($old_three);
+            // unlink($old_three);
             $imag_three = $request->file('image_three');                
             $name_gen = hexdec(uniqid()).'.'.$imag_three->getClientOriginalExtension();
             Image::make($imag_three)->resize(270,270)->save(public_path('frontend/img/product/'.$name_gen));       
             $img_url3 ='frontend/img/product/'.$name_gen;
  
-            //  Product::findOrFail($id)->update([
-            //      'image_three' => $img_url3,
-            //     //  'updated_at' => Carbon::now(),
-            //  ]);
+             Product::findOrFail($id)->update([
+                 'image_three' => $img_url3,
+                //  'updated_at' => Carbon::now(),
+             ]);
 
-            $fileModal = new Product();
-            $fileModal->image_three = $img_url3;
-           
-            $fileModal->save();
- 
              return redirect('admin/product/edit/'.$id);
          }
          else{
@@ -293,6 +326,10 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Product::findOrFail($id);
+
+        $data->delete();
+    
+        return redirect('admin/product');
     }
 }
