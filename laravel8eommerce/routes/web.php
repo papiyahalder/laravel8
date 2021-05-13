@@ -61,6 +61,11 @@ Route::prefix('/admin')->group(function () {
         Route::get('/product/destroy/{id}', 'App\Http\Controllers\Admin\ProductController@destroy')->name('delete.product');
         // Route::post('/products/image-update','Admin\ProductController@updateImage')->name('update-image');
         
+         // --------------------------Admin Coupon--------------------------//
+         Route::get('/coupon', 'App\Http\Controllers\Admin\CouponController@index')->name('admin.coupon');
+         Route::get('/coupon/add', 'App\Http\Controllers\Admin\CouponController@create')->name('add.coupon');
+         Route::post('/coupon/store', 'App\Http\Controllers\Admin\CouponController@store')->name('store.coupon');
+         Route::get('/coupon/edit/{id}', 'App\Http\Controllers\Admin\CouponController@edit')->name('edit.coupon');
     });
      
 });
