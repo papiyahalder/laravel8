@@ -79,9 +79,9 @@
                     
                     <td class="project-state">
                     @if($category->status == 1)
-                        <span class="badge badge-success">Active</span>
+                        <a class="updateStatus" id="category-{{ $category->id}}" category_id="{{ $category->id }}" href="javascript:void(0)" height="120" width="120">Active</a>
                     @else
-                    <span class="badge badge-success">Inctive</span>
+                    <a class="updateStatus" id="category-{{ $category->id}}" category_id="{{ $category->id }}" href="javascript:void(0)" height="120" width="120">Inactive</a>
                     @endif
                     </td>
 
@@ -115,4 +115,24 @@
    <!-- /.content -->
  </div>
  <!-- /.content-wrapper -->
+ <script type="text/javascript">
+  $(document).ready(function(){
+    $(".updateStatus").click(function(){
+      var status = $(this).text();
+      var category_id = $(this).attr("category_id");
+      alert(status);
+      alert(category_id);
+      $.ajax({
+        type:'POST',
+        url:'/admin/update-status',
+        data:{status:status,category_id:category_id},
+        success:function(resp){
+
+        },error:function(){
+          alert('Error');
+        }
+      });
+    });
+  });
+ </script>
 @endsection

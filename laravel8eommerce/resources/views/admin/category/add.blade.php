@@ -86,71 +86,71 @@
 
 <script type="text/javascript">
 
-$('#addCategory').submit(function(event){
-      event.preventDefault();
+// $('#addCategory').submit(function(event){
+//       event.preventDefault();
 
-   $.ajax({
-      type:"post",
-      url:"{{ url('/admin/category/store') }}",
-      dataType="json",
-      data:$('#addCategory').serialize(),
-      success: function(data){
-         alert("Data Save: " + data);
-      }
-      error: function(data){
-         alert("Error")
-      }
-   });
-   });
+//    $.ajax({
+//       type:"post",
+//       url:"{{ url('/admin/category/store') }}",
+//       dataType="json",
+//       data:$('#addCategory').serialize(),
+//       success: function(data){
+//          alert("Data Save: " + data);
+//       }
+//       error: function(data){
+//          alert("Error")
+//       }
+//    });
+//    });
 
 
-//    $(document).ready(function(){
+   $(document).ready(function(){
 
-// $("form#add-category").on('submit', function(){
+$("form#addCategory").on('submit', function(){
 
-//     $("#butsave").attr('disabled', true);
+    $("#butsave").attr('disabled', true);
 
     
-//     var formData = new FormData(this);
-//     $.ajax({
-//         method      : 'POST',
-//         data        : formData,
-//         url         : $(this).attr('action'),
-//         processData : false, // Don't process the files
-//         contentType : false, // Set content type to false as jQuery will tell the server its a query string request
-//         dataType    : 'json',
-//         success     : function(response){
-//             if(response.success == true)
-//             {
-//                 swal({   
-//                         title: "Success",   
-//                         text: response.data,   
-//                         type: "success",   
-//                         showCancelButton: false,
-//                         showConfirmButton: false,
-//                         timer: 1000
-//                 });
-//                 //$("form#add-activity")[0].reset();
-//                 location.reload();
-//             }
-//             else
-//             {
-//                 $.notify(""+response.data+"", {type:"danger"});
-//                 $("#butsave").attr('disabled', false);
-//             }
-//         },
-//         error       : function(data){
-//             var errors = $.parseJSON(data.responseText);
-//             $.each(errors, function(index, value) {
-//                 $.notify(""+value+"", {type:"danger"});
-//             });
-//             $("#butsave").attr('disabled', false);
-//         }
+    var formData = new FormData(this);
+    $.ajax({
+        method      : 'POST',
+        data        : formData,
+        url         : $(this).attr('action'),
+        processData : false, // Don't process the files
+        contentType : false, // Set content type to false as jQuery will tell the server its a query string request
+        dataType    : 'json',
+        success     : function(response){
+            if(response.success == true)
+            {
+                swal({   
+                        title: "Success",   
+                        text: response.data,   
+                        type: "success",   
+                        // showCancelButton: false,
+                        // showConfirmButton: false,
+                        timer: 1000
+                });
+                $("form#add-activity")[0].reset();
+                location.reload();
+            }
+            else
+            {
+                // $.notify(""+response.data+"", {type:"danger"});
+                // $("#butsave").attr('disabled', false);
+            }
+        },
+        error       : function(data){
+            var errors = $.parseJSON(data.responseText);
+            $.each(errors, function(index, value) {
+                $.notify(""+value+"", {type:"danger"});
+            });
+            $("#butsave").attr('disabled', false);
+        }
 
-//     });
-//     return false;
+    });
+    return false;
 
-// });
-// });
+});
+});
 </script>
 @endsection

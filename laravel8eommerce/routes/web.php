@@ -41,6 +41,7 @@ Route::prefix('/admin')->group(function () {
         Route::post('/category/store', 'App\Http\Controllers\Admin\CategoryController@store')->name('store.category');
         Route::get('/category/edit/{id}', 'App\Http\Controllers\Admin\CategoryController@edit')->name('edit.category');
         Route::post('/category/update/{id}', 'App\Http\Controllers\Admin\CategoryController@update')->name('update.category');
+        Route::post('/update-status', 'App\Http\Controllers\Admin\CategoryController@status')->name('update.category');
         Route::get('destroy/category/{id}', 'App\Http\Controllers\Admin\CategoryController@destroy')->name('category.destroy');
 
         // -------------------------------Admin Brand-------------------------//

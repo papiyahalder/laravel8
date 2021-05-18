@@ -21,6 +21,26 @@ class CategoryController extends Controller
         // return view('admin.category.index',compact('categories'));
         return view('admin.category.index',compact('categories'));
     }
+    public function status(Request $request)
+    {
+        if($request->ajax()){
+            $data = $request->all();
+            // echo "<pre>";print_r($data);
+            if($data['status'] == "Active"){
+                $status = 0;
+            }else
+            {
+                if($data['status'] == "Inactive"){
+                    $status = 1;
+            }
+            Category::where('id',$data['category_id'])->update(['status'=>$status]);
+            return response()->json([
+                "status"=>$status,
+                "message"=>"submited",
+                'success' => true,]);
+        }
+    }
+    }
 
     /**
      * Show the form for creating a new resource.
