@@ -26,20 +26,18 @@ class CategoryController extends Controller
         if($request->ajax()){
             $data = $request->all();
             // echo "<pre>";print_r($data);
-            if($data['status'] == "Active"){
+            if($data['status'] == "1"){
                 $status = 0;
             }else
             {
-                if($data['status'] == "Inactive"){
                     $status = 1;
             }
             Category::where('id',$data['category_id'])->update(['status'=>$status]);
             return response()->json([
                 "status"=>$status,
-                "message"=>"submited",
-                'success' => true,]);
+                'category_id'=>$data['category_id']]);
         }
-    }
+    
     }
 
     /**

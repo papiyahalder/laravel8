@@ -120,14 +120,20 @@
     $(".updateStatus").click(function(){
       var status = $(this).text();
       var category_id = $(this).attr("category_id");
-      alert(status);
-      alert(category_id);
+      // alert(status);
+      // alert(category_id);
       $.ajax({
         type:'POST',
         url:'/admin/update-status',
         data:{status:status,category_id:category_id},
         success:function(resp){
-
+          // alert(resp['status']);
+          // alert(resp['category_id']);
+          if(resp['status'] == 0){
+            $("#category-"+category_id).html("<a class='updateStatus' href='javascript:void(0)'>Inctive</a>");
+          }elseif(resp['status'] == 1){
+            $("#category-"+category_id).html("<a class='updateStatus'  href='javascript:void(0)'>Active</a>");
+          }
         },error:function(){
           alert('Error');
         }
