@@ -26,7 +26,7 @@ class CategoryController extends Controller
         if($request->ajax()){
             $data = $request->all();
             // echo "<pre>";print_r($data);exit;
-            if($data['status'] =="Active"){
+            if($data['status'] =="1"){
                 $status = 0;
             }else
             {
