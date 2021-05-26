@@ -26,17 +26,18 @@ class CategoryController extends Controller
         if($request->ajax()){
             $data = $request->all();
             // echo "<pre>";print_r($data);exit;
-            if($data['status'] =="1"){
-                $status = 0;
+            if($data['status'] =="Active"){
+                $status= 0;
             }else
             {
-              $status = 1;
+                $status = 1;
             }
             // Product::findOrFail($product_id)->update(['status' => 0]);
             Category::where('id',$data['category_id'])->where('status',$data['status'])->update(['status'=>$status]);
             return response()->json([
                 "status"=>$status,
-                'category_id'=>$data['category_id']]);
+                'category_id'=>$data['category_id'],
+                'success' => true]);
         }
     
     }
